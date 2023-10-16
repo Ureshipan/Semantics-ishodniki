@@ -142,11 +142,11 @@ BOOL SummaryDialog::OnInitDialog()
 			Formula * icurr = (Formula *)base;    // привожу к указателю на формулу
 			// формирую строку типа
 			if (icurr->getFeature() == PERFORMED_FEATURE) 
-				res = _T("выполнима");
+				res = _T("выполнимая");
 			else if (icurr->getFeature() == TRUTH_FEATURE) 
-				res = _T("истина");
+				res = _T("истинная");
 			else if (icurr->getFeature() == FALSE_FEATURE) 
-				res = _T("ложь"); 
+				res = _T("ложная"); 
 			else if (icurr->getFeature() == ATOMARN_FEATURE)
 				res = _T("атомарная");
 		}

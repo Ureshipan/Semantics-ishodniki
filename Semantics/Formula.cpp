@@ -279,7 +279,7 @@ Formula * joinFormula(vector <EntityBase *> * entities, EntityBaseType type, For
 		{
 			formula = new Formula();
 			formula->setType(type);
-			formula->feature = NONE_FEATURE;
+			formula->feature = PERFORMED_FEATURE;
 
 			Formula * icurr = first;
 			Formula * jcurr = second;

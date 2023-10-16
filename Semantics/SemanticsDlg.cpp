@@ -1210,7 +1210,7 @@ DWORD WINAPI AutomateWordByImport(vector <EntityBase *> * all_entities, TCHAR * 
 			Word::_FontPtr spFont = spTable->Cell(i + 2, 1)->Range->Font;
 			spFont->Size = 8;
 			spFont->Name = L"Times New Roman";
-			spTable->Cell(i + 2, 1)->Range->InsertAfter(to_tstring((long double) (i + 1)).c_str());
+			spTable->Cell(i + 2, 1)->Range->InsertAfter(to_tstring((int) (i + 1)).c_str());
 			EntityBase * peb = all_entities->at(i);
 
 			// вывод в столбец "Тип" таблицы Word
@@ -1219,11 +1219,11 @@ DWORD WINAPI AutomateWordByImport(vector <EntityBase *> * all_entities, TCHAR * 
 			{
 				Formula * icurr = (Formula *)peb;
 				if (icurr->getFeature() == PERFORMED_FEATURE) 
-					tstr = _T("выполнима");
+					tstr = _T("выполнимая");
 				else if (icurr->getFeature() == TRUTH_FEATURE) 
-					tstr = _T("истина");
+					tstr = _T("истинная");
 				else if (icurr->getFeature() == FALSE_FEATURE) 
-					tstr = _T("ложь"); 
+					tstr = _T("ложная"); 
 				else if (icurr->getFeature() == ATOMARN_FEATURE)
 					tstr = _T("атомарная");
 				if(tstr.size() > 0)
