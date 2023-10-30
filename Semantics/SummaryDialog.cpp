@@ -69,13 +69,13 @@ BOOL SummaryDialog::OnInitDialog()
 	// разграничительных линий
 	
 	// добавление колонок в таблицу просмотра, установка их заголовков и ширины
-	m_list.InsertColumn(0, _T("Номер"), LVCFMT_LEFT, 50);
+	m_list.InsertColumn(0, _T("Номер"), LVCFMT_LEFT, 100);
 	m_list.InsertColumn(1, _T("Формула"), LVCFMT_LEFT, 200);
-	m_list.InsertColumn(2, _T("Тип"), LVCFMT_LEFT, 50);
-	m_list.InsertColumn(3, _T("Свободные переменные"), LVCFMT_LEFT, 60);
+	m_list.InsertColumn(2, _T("Тип"), LVCFMT_LEFT, 100);
+	m_list.InsertColumn(3, _T("Свободные переменные"), LVCFMT_LEFT, 120);
 	m_list.InsertColumn(4, _T("Описание"), LVCFMT_LEFT, 100);
-	m_list.InsertColumn(5, _T("Addons"), LVCFMT_LEFT, 50);
-	m_list.InsertColumn(6, _T("Обозначение"), LVCFMT_LEFT, 50);
+	m_list.InsertColumn(5, _T("Addons"), LVCFMT_LEFT, 200);
+	m_list.InsertColumn(6, _T("Обозначение"), LVCFMT_LEFT, 200);
 	m_list.InsertColumn(7, _T("Нач. текст"), LVCFMT_LEFT, 200);
 	int nColumns = 7;    // число колонок в таблице просмотра
 	// установка колонок "только для чтения"
