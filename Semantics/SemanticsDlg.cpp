@@ -98,8 +98,9 @@ END_MESSAGE_MAP()
 
 CSemanticsDlg::CSemanticsDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CSemanticsDlg::IDD, pParent)
+	, m_rbLang(0)
 {
-	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_hIcon = AfxGetApp()->LoadIcon(IDI_Mathsem);
 
 }
 
@@ -119,6 +120,7 @@ void CSemanticsDlg::DoDataExchange(CDataExchange* pDX)
 	//	DDX_Control(pDX, IDC_BUILDFORMULA7, m_button7);
 	//DDX_Control(pDX, IDC_BUILDTUPLE, m_KortegeButton);
 	DDX_Control(pDX, IDC_CHANGEVARIABLE, m_ChangeVariable);
+	DDX_Radio(pDX, RB_RUS, m_rbLang);
 }
 
 BEGIN_MESSAGE_MAP(CSemanticsDlg, CDialogEx)
@@ -142,6 +144,8 @@ BEGIN_MESSAGE_MAP(CSemanticsDlg, CDialogEx)
 //	ON_BN_CLICKED(IDC_BUILDFORMULA7, &CSemanticsDlg::OnBnClickedBuildformula7)
 // ON_BN_CLICKED(IDC_BUILDTUPLE, &CSemanticsDlg::OnBnClickedBuildtuple)
 ON_BN_CLICKED(IDC_CHANGEVARIABLE, &CSemanticsDlg::OnBnClickedChangevariable)
+ON_BN_CLICKED(RB_RUS, &CSemanticsDlg::OnBnClickedRus)
+ON_BN_CLICKED(RB_ENG, &CSemanticsDlg::OnBnClickedEng)
 END_MESSAGE_MAP()
 
 
@@ -1802,4 +1806,33 @@ void CSemanticsDlg::OnBnClickedChangevariable()
 	}
 	delete rvd;
 	// TODO: добавьте свой код обработчика уведомлений
+}
+
+
+void CSemanticsDlg::OnBnClickedRus()
+{
+	// TODO: Add your control notification handler code here
+	GetDlgItem(RB_RUS)->SetWindowTextW(L"Русский");
+	GetDlgItem(RB_ENG)->SetWindowTextW(L"Английский");
+	m_rbLang = 0;
+	UpdateData(TRUE);
+}
+
+
+void CSemanticsDlg::OnBnClickedEng()
+{
+	// TODO: Add your control notification handler code here
+	GetDlgItem(RB_RUS)->SetWindowTextW(L"Russian");
+	GetDlgItem(RB_ENG)->SetWindowTextW(L"English");
+	//m_rbLang = 1;
+	//CString langStr;
+	//langStr.Format(_T("%d"), m_rbLang);
+	if (m_rbLang == 1) {
+		//MessageBox(NULL, langStr, MB_OK);
+		GetDlgItem(IDC_ADDAKSIOMA)->SetWindowTextW(L"Add an atomatic formula");
+	}
+	else {
+		GetDlgItem(IDC_ADDAKSIOMA)->SetWindowTextW(L"Добавить атомарную формулу");
+	}
+	UpdateData(TRUE);
 }

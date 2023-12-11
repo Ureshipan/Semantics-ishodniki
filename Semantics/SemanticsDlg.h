@@ -85,4 +85,7 @@ public:
 	CScientificButton m_KortegeButton;
 	afx_msg void OnBnClickedChangevariable();
 	CScientificButton m_ChangeVariable;
+	int m_rbLang;
+	afx_msg void OnBnClickedRus();
+	afx_msg void OnBnClickedEng();
 };

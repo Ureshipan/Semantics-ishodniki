@@ -1,5 +1,5 @@
  
-// äÆ¨†≠§Î (ID_* ® IDM_*) 
+// –ö–æ–º–∞–Ω–¥—ã (ID_* –∏ IDM_*) 
 #define HIDM_ABOUTBOX                           0x10010
 #define HID__32771                              0x18003
 #define HID_Menu                                0x18004
@@ -37,13 +37,13 @@
 #define HID__32804                              0x18024
 #define HID_MENU_FUZZY_INCLUSION                0x18025
  
-// è‡®£´†Ë•≠®Ô (IDP_*) 
+// –ü—Ä–∏–≥–ª–∞—à–µ–Ω–∏—è (IDP_*) 
  
-// ê•·„‡·Î (IDR_*) 
+// –†–µ—Å—É—Ä—Å—ã (IDR_*) 
 #define HIDR_MAINFRAME                          0x20080
 #define HIDR_MENU_SYMBOLS                       0x2008A
  
-// Ñ®†´Æ£Æ¢Î• Æ™≠† (IDD_*) 
+// –î–∏–∞–ª–æ–≥–æ–≤—ã–µ –æ–∫–Ω–∞ (IDD_*) 
 #define HIDD_ABOUTBOX                           0x20064
 #define HIDD_SEMANTICS_DIALOG                   0x20066
 #define HIDD_DIALOG1                            0x20081
@@ -57,7 +57,7 @@
 #define HIDD_TUPLEDIALOG                        0x2008C
 #define HIDD_REPLACEVARIABLE                    0x2008F
  
-// ù´•¨•≠‚Î „Ø‡†¢´•≠®Ô ‰‡•©¨Æ¢ (IDW_*) 
+// –≠–ª–µ–º–µ–Ω—Ç—ã —É–ø—Ä–∞–≤–ª–µ–Ω–∏—è —Ñ—Ä–µ–π–º–æ–≤ (IDW_*) 
 // This is a part of the Microsoft Foundation Classes C++ library.
 // Copyright (C) Microsoft Corporation
 // All rights reserved.

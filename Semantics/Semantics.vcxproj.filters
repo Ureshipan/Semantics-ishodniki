@@ -210,4 +210,15 @@
       <Filter>Заголовочные файлы</Filter>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\LogoCircle.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\LogoCircle.ico">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="res\LogoCircle.ico">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
