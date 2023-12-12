@@ -10,6 +10,8 @@
 #include "common_functions.h"
 
 
+//TRANSLATED
+
 // диалоговое окно CAtomFormulaDialog
 
 IMPLEMENT_DYNAMIC(CAtomFormulaDialog, CDialog)
@@ -155,38 +157,58 @@ void CAtomFormulaDialog::OnBnClickedOk()
 							CDialog::OnOK();
 						}
 						else
+
 						{
-							AfxMessageBox(_T("В индексе для второй переменной указано не число"));
+
+							if (CURRENT_LANG_OF == "rus") 
+								AfxMessageBox(_T("В индексе для второй переменной указано не число"));
+							else 
+								AfxMessageBox(_T("The index for the second variable does not specify a number"));
 							m_index2.SetFocus();
 						}
 					}
 					else
 					{
-						AfxMessageBox(_T("Индекс для второй переменной не введен"));
+						if (CURRENT_LANG_OF == "rus")
+							AfxMessageBox(_T("Индекс для второй переменной не введен"));
+						else
+							AfxMessageBox(_T("The index for the second variable has not been entered"));
 						m_index1.SetFocus();
 					}
 				}
 				else
 				{
-					AfxMessageBox(_T("В индексе для первой переменной указано не число"));
+					if (CURRENT_LANG_OF == "rus")
+						AfxMessageBox(_T("В индексе для первой переменной указано не число"));
+					else
+						AfxMessageBox(_T("The index for the first variable does not specify a number"));
 					m_index1.SetFocus();
 				}
 			}
 			else
 			{
-				AfxMessageBox(_T("Индекс для первой переменной не введен"));
+				if (CURRENT_LANG_OF == "rus")
+					AfxMessageBox(_T("Индекс для первой переменной не введен"));
+				else
+					AfxMessageBox(_T("The index for the first variable is not entered"));
 				m_index1.SetFocus();
 			}
 		}
 		else
 		{
-			AfxMessageBox(_T("Не выбрано обозначение для второй переменной"));
+			if (CURRENT_LANG_OF == "rus")
+				AfxMessageBox(_T("Не выбрано обозначение для второй переменной"));
+			else
+				AfxMessageBox(_T("The designation for the second variable is not selected"));
 			m_combo2.SetFocus();
 		}
 	}
 	else
 	{
-		AfxMessageBox(_T("Не выбрано обозначение для первой переменной"));
+		if (CURRENT_LANG_OF == "rus")
+			AfxMessageBox(_T("Не выбрано обозначение для первой переменной"));
+		else
+			AfxMessageBox(_T("The designation for the first variable is not selected"));
 		m_combo1.SetFocus();
 	}
 }

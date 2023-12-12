@@ -8,6 +8,11 @@
 
 
 
+
+//TRANSLATED
+
+
+
 // удаляет начальные пробельные символы (пробелы, табуляции и пр.) из начала строки
 void removeLeadingWhitespaces(tstring * str)
 {

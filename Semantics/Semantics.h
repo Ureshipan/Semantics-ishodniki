@@ -9,6 +9,9 @@
 #endif
 
 #include "resource.h"		// основные символы
+#include <string>
+
+__declspec(selectany) std::string CURRENT_LANG_OF("eng");
 
 
 // CSemanticsApp:

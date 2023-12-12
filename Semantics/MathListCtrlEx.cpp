@@ -3,6 +3,11 @@
 // ListCtrlEx.cpp : implementation file
 //
 
+
+
+//TRANSLATED
+
+
 #include "stdafx.h"
 #include "MathListCtrlEx.h"
 #include "common_functions.h"

@@ -71,4 +71,7 @@ public:
 	void HideCandidates();
 	CButton m_checkAll1;
 	CButton m_checkAll2;
+	afx_msg void OnBnClickedCheck1();
+	afx_msg void OnStnClickedStatic1();
+	afx_msg void OnBnClickedCheckall1();
 };

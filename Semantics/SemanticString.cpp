@@ -4,7 +4,11 @@
 #include "stdafx.h"
 #include "SemanticString.h"
 
-//
+//TRANSLATED
+
+
+
+
 // конструктор по умолчанию
 //
 SemanticString::SemanticString()

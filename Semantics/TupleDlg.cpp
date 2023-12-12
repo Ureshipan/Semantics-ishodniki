@@ -10,6 +10,8 @@
 #include "Operation.h"
 
 
+//TRANSLATED
+
 // диалоговое окно TupleDlg
 
 IMPLEMENT_DYNAMIC(CTupleDlg, CDialog)
@@ -73,8 +75,11 @@ void CTupleDlg::OnBnClickedOk()
 		success = true;
 	}
 	else
-	{
-		MessageBox(_T("Не выбрана первая переменная для построения кортежа"), _T("Предупреждение"), MB_OK );
+	{	
+		if (CURRENT_LANG_OF == "rus")
+			MessageBox(_T("Не выбрана первая переменная для построения кортежа"), _T("Предупреждение"), MB_OK );
+		else
+			MessageBox(_T("The first variable for building the tuple is not selected"), _T("Warning"), MB_OK );
 		combo1.SetFocus();
 	}
 	if(success)
@@ -110,7 +115,10 @@ void CTupleDlg::OnBnClickedOk()
 		if(success)
 		{
 			success = false;
-			MessageBox(_T("Не выбрано множество для построения кортежа"), _T("Предупреждение"), MB_OK );
+			if (CURRENT_LANG_OF == "rus")
+				MessageBox(_T("Не выбрано множество для построения кортежа"), _T("Предупреждение"), MB_OK );
+			else	
+				MessageBox(_T("The set for building the tuple is not selected"), _T("Warning"), MB_OK );
 			combo3.SetFocus();
 		}
 	}
@@ -125,7 +133,10 @@ void CTupleDlg::OnBnClickedOk()
 		tstr_index3 = tstring(tbuf_index3);
 		if((tstr1.compare(tstr3) == 0) && (tstr_index1.compare(tstr_index3) == 0))
 		{
-			MessageBox(_T("Первая переменная кортежа совпадает с множеством"), _T("Предупреждение"), MB_OK );
+			if (CURRENT_LANG_OF == "rus")
+				MessageBox(_T("Первая переменная кортежа совпадает с множеством"), _T("Предупреждение"), MB_OK );
+			else	
+				MessageBox(_T("The first variable of the tuple coincides with the set"), _T("Warning"), MB_OK );
 			success = false;
 		}
 	}
@@ -135,7 +146,10 @@ void CTupleDlg::OnBnClickedOk()
 		tstr_index2 = tstring(tbuf_index2);
 		if((tstr2.compare(tstr3) == 0) && (tstr_index2.compare(tstr_index3) == 0))
 		{
-			MessageBox(_T("Вторая переменная кортежа совпадает с множеством"), _T("Предупреждение"), MB_OK );
+			if (CURRENT_LANG_OF == "rus")
+				MessageBox(_T("Вторая переменная кортежа совпадает с множеством"), _T("Предупреждение"), MB_OK );
+			else
+				MessageBox(_T("The second variable of the tuple coincides with the set"), _T("Warning"), MB_OK );
 			success = false;
 		}
 	}
@@ -174,7 +188,10 @@ void CTupleDlg::OnBnClickedOk()
 			else
 			{
 				delete tuple_temp;
-				MessageBox(_T("Такой же кортеж уже создан в схеме."), _T("Предупреждение"), MB_OK );
+				if (CURRENT_LANG_OF == "rus")
+					MessageBox(_T("Такой же кортеж уже создан в схеме."), _T("Предупреждение"), MB_OK );
+				else
+					MessageBox(_T("The same tuple has already been created in the schema."), _T("Warning"), MB_OK );
 			}
 		}
 	}

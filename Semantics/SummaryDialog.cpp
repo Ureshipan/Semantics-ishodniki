@@ -3,6 +3,8 @@
 // SummaryDialog.cpp: файл реализации
 //
 
+//TRANSLATED
+
 #include "stdafx.h"
 #include "Semantics.h"
 #include "SummaryDialog.h"
@@ -69,14 +71,27 @@ BOOL SummaryDialog::OnInitDialog()
 	// разграничительных линий
 	
 	// добавление колонок в таблицу просмотра, установка их заголовков и ширины
-	m_list.InsertColumn(0, _T("Номер"), LVCFMT_LEFT, 100);
-	m_list.InsertColumn(1, _T("Формула"), LVCFMT_LEFT, 200);
-	m_list.InsertColumn(2, _T("Тип"), LVCFMT_LEFT, 100);
-	m_list.InsertColumn(3, _T("Свободные переменные"), LVCFMT_LEFT, 120);
-	m_list.InsertColumn(4, _T("Описание"), LVCFMT_LEFT, 100);
-	m_list.InsertColumn(5, _T("Addons"), LVCFMT_LEFT, 200);
-	m_list.InsertColumn(6, _T("Обозначение"), LVCFMT_LEFT, 200);
-	m_list.InsertColumn(7, _T("Нач. текст"), LVCFMT_LEFT, 200);
+	if (CURRENT_LANG_OF == "rus") {
+		m_list.InsertColumn(0, _T("Номер"), LVCFMT_LEFT, 100);
+		m_list.InsertColumn(1, _T("Формула"), LVCFMT_LEFT, 200);
+		m_list.InsertColumn(2, _T("Тип"), LVCFMT_LEFT, 100);
+		m_list.InsertColumn(3, _T("Свободные переменные"), LVCFMT_LEFT, 120);
+		m_list.InsertColumn(4, _T("Описание"), LVCFMT_LEFT, 100);
+		m_list.InsertColumn(5, _T("Addons"), LVCFMT_LEFT, 200);
+		m_list.InsertColumn(6, _T("Обозначение"), LVCFMT_LEFT, 200);
+		m_list.InsertColumn(7, _T("Нач. текст"), LVCFMT_LEFT, 200);
+	}
+	else {
+		m_list.InsertColumn(0, _T("Number"), LVCFMT_LEFT, 100);
+		m_list.InsertColumn(1, _T("Formula"), LVCFMT_LEFT, 200);
+		m_list.InsertColumn(2, _T("Type"), LVCFMT_LEFT, 100);
+		m_list.InsertColumn(3, _T("Free variables"), LVCFMT_LEFT, 120);
+		m_list.InsertColumn(4, _T("Description"), LVCFMT_LEFT, 100);
+		m_list.InsertColumn(5, _T("Addons"), LVCFMT_LEFT, 200);
+		m_list.InsertColumn(6, _T("Designation"), LVCFMT_LEFT, 200);
+		m_list.InsertColumn(7, _T("the initial text"), LVCFMT_LEFT, 200);
+	}
+
 	int nColumns = 7;    // число колонок в таблице просмотра
 	// установка колонок "только для чтения"
 	m_list.SetColumnReadOnly(0);
@@ -141,14 +156,26 @@ BOOL SummaryDialog::OnInitDialog()
 		{
 			Formula * icurr = (Formula *)base;    // привожу к указателю на формулу
 			// формирую строку типа
-			if (icurr->getFeature() == PERFORMED_FEATURE) 
-				res = _T("выполнимая");
-			else if (icurr->getFeature() == TRUTH_FEATURE) 
-				res = _T("истинная");
-			else if (icurr->getFeature() == FALSE_FEATURE) 
-				res = _T("ложная"); 
-			else if (icurr->getFeature() == ATOMARN_FEATURE)
-				res = _T("атомарная");
+			if (CURRENT_LANG_OF == "rus") {
+				if (icurr->getFeature() == PERFORMED_FEATURE)
+					res = _T("выполнимая");
+				else if (icurr->getFeature() == TRUTH_FEATURE)
+					res = _T("истинная");
+				else if (icurr->getFeature() == FALSE_FEATURE)
+					res = _T("ложная");
+				else if (icurr->getFeature() == ATOMARN_FEATURE)
+					res = _T("атомарная");
+			}
+			else {
+				if (icurr->getFeature() == PERFORMED_FEATURE)
+					res = _T("doable");
+				else if (icurr->getFeature() == TRUTH_FEATURE)
+					res = _T("true");
+				else if (icurr->getFeature() == FALSE_FEATURE)
+					res = _T("false");
+				else if (icurr->getFeature() == ATOMARN_FEATURE)
+					res = _T("atomic");
+			}
 		}
 		if(!res.empty())    // если строка типа формулы (если это формула) непустая
 		{ 
@@ -753,8 +780,15 @@ bool SummaryDialog::IfCorrectRedefinition(EntityBase * pbase, tstring & new_text
 void SummaryDialog::OnBnClickedPereopisanie()
 {
 	// TODO: добавьте свой код обработчика уведомлений
-	tstring mess(_T("Вы собираетесь переобозначить формулу. Если вы используете в новом обозначении свободные формулы, проверьте их на совпадение с существующими. Или скопируйте из соответствующей графы таблицы. Продолжить?"));
-	tstring caption(_T("Внимание!"));
+	tstring mess, caption;
+	if (CURRENT_LANG_OF == "rus") {
+		mess = tstring(_T("Вы собираетесь переобозначить формулу. Если вы используете в новом обозначении свободные формулы, проверьте их на совпадение с существующими. Или скопируйте из соответствующей графы таблицы. Продолжить?"));
+		caption = tstring(_T("Внимание!"));
+	}
+	else {
+		mess = tstring(_T("You are going to reinterpret the formula. If you use free formulas in the new notation, check them to match the existing ones. Or copy it from the corresponding column of the table. Continue?"));
+		caption = tstring(_T("Attention!"));
+	}
 	if(MessageBox( mess.data(), caption.data(), MB_YESNO) == IDYES)
 	{
 		int  nItem11 = -1;
@@ -766,14 +800,30 @@ void SummaryDialog::OnBnClickedPereopisanie()
 			m_list.GetItemText(nItem11, 4, buf, 2047);    // получаю текст переобозначения
 			tstring set_text = buf;
 			EntityBase * base = entities->at(nItem11);
-			if(!IfCorrectRedefinition(entities->at(nItem11), set_text))
-			{
-				tstring mess(_T("В переобозначении "));
-				mess += to_tstring((long long)(nItem11 + 1));
-				mess += _T(" объекта не указаны все свободные переменные для этого объекта");
-				tstring caption(_T("Внимание!"));
-				MessageBox( mess.data(), caption.data(), MB_OK);
-				return;
+			if (CURRENT_LANG_OF == "rus") {
+
+				if (!IfCorrectRedefinition(entities->at(nItem11), set_text))
+				{
+
+					tstring mess(_T("В переобозначении "));
+					mess += to_tstring((long long)(nItem11 + 1));
+					mess += _T(" объекта не указаны все свободные переменные для этого объекта");
+					tstring caption(_T("Внимание!"));
+					MessageBox(mess.data(), caption.data(), MB_OK);
+					return;
+				}
+			}
+			else {
+				if (!IfCorrectRedefinition(entities->at(nItem11), set_text))
+				{
+
+					tstring mess(_T("In the re-designation "));
+					mess += to_tstring((long long)(nItem11 + 1));
+					mess += _T(" all free variables for this object are not specified");
+					tstring caption(_T("Attention!"));
+					MessageBox(mess.data(), caption.data(), MB_OK);
+					return;
+				}
 			}
 		}
 	UINT i, uSelectedCount = m_list.GetSelectedCount();
@@ -805,7 +855,13 @@ void SummaryDialog::OnBnClickedPereopisanie()
 			else
 			{
 				success = false;
-				MessageBox(_T("Некорректная схема"), _T("Ошибка"));
+				if (CURRENT_LANG_OF == "rus") {
+					MessageBox(_T("Некорректная схема"), _T("Ошибка"));
+				}
+				else {
+					MessageBox(_T("Incorrect scheme"), _T("Mistake"));
+
+				}
 				break;
 			}
 

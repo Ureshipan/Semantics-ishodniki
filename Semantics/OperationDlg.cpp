@@ -3,6 +3,8 @@
 // OperationDlg.cpp: файл реализации
 //
 
+//TRANSLATED
+
 #include "stdafx.h"
 #include "Semantics.h"
 #include "OperationDlg.h"
@@ -69,6 +71,8 @@ BEGIN_MESSAGE_MAP(OperationDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_MFCBUTTON2, &OperationDlg::OnBnClickedMfcbutton2)
 	ON_BN_CLICKED(IDC_MFCBUTTON6, &OperationDlg::OnBnClickedMfcbutton6)
 	ON_LBN_SELCHANGE(IDC_LISTDEST1, &OperationDlg::OnSelchangeListdest1)
+	ON_STN_CLICKED(IDC_STATIC1, &OperationDlg::OnStnClickedStatic1)
+	ON_BN_CLICKED(IDC_CHECKALL1, &OperationDlg::OnBnClickedCheckall1)
 END_MESSAGE_MAP()
 
 
@@ -205,7 +209,11 @@ void OperationDlg::SetOperationState()
 		m_ButtonRemoveAll1.EnableWindow(false);
 		m_checkAll1.ShowWindow(SW_SHOW);
 		m_checkAll1.EnableWindow(false);
-		tstr = _T("Операция отрицания \"not\"");
+		if(CURRENT_LANG_OF=="rus")
+			tstr = _T("Операция отрицания \"not\"");
+		else 
+			tstr = _T("The negation operation \"not\"");
+
 		m_StaticDescription.dsi->PrepareSubItemData(tstr);
 //		this->m_StaticDescription.SetWindowTextT(tstr.data());
 		break;
@@ -230,10 +238,18 @@ void OperationDlg::SetOperationState()
 		m_ButtonAddAll1.EnableWindow(false);
 		m_ButtonRemove1.EnableWindow(false);
 		m_ButtonRemoveAll1.EnableWindow(false);
-		if ( operation == QUANTIFIER1_OPERATION )
-			tstr = _T("Операция навешивания квантора <Symbol=/34>");
-		else
-			tstr = _T("Операция навешивания квантора <Symbol=/36>");
+		if (CURRENT_LANG_OF == "rus") {
+			if (operation == QUANTIFIER1_OPERATION)
+				tstr = _T("Операция навешивания квантора <Symbol=/34>");
+			else
+				tstr = _T("Операция навешивания квантора <Symbol=/36>");
+		}
+		else {
+			if (operation == QUANTIFIER1_OPERATION)
+				tstr = _T("The operation of attaching a quantifier <Symbol=/34>");
+			else
+				tstr = _T("The operation of attaching a quantifier <Symbol=/36>");
+		}
 		m_StaticDescription.dsi->PrepareSubItemData(tstr);
 		m_checkAll2.ShowWindow(SW_SHOW);
 		m_checkAll2.EnableWindow(false);
@@ -262,10 +278,18 @@ void OperationDlg::SetOperationState()
 		m_ButtonRemove1.EnableWindow(false);
 		m_ButtonAddAll1.EnableWindow(false);
 		m_ButtonRemoveAll1.EnableWindow(false);
-		if ( operation == AND_OPERATION )
-			tstr = _T("Операция объединения <Symbol=/and>");
-		else
-			tstr = _T("Операция объединения <Symbol=/or>");
+		if (CURRENT_LANG_OF == "rus") {
+			if (operation == AND_OPERATION)
+				tstr = _T("Операция объединения <Symbol=/and>");
+			else
+				tstr = _T("Операция объединения <Symbol=/or>");
+		}
+		else {
+			if (operation == AND_OPERATION)
+				tstr = _T("The merge operation <Symbol=/and>");
+			else
+				tstr = _T("The merge operation <Symbol=/or>");
+		}
 		
 		m_StaticDescription.dsi->PrepareSubItemData(tstr);
 		m_checkAll2.ShowWindow(SW_SHOW);
@@ -323,8 +347,15 @@ void OperationDlg::OnBnClickedOk()
 					if(f)
 					{
 						Formula * formula = f->negativeFormula(allEntities);
-						if(!formula)
-							MessageBox(_T("Формула с такими же переменными уже существует и не может быть создана"), _T("Предупреждение"), MB_OK );
+						if (!formula) {
+							if (CURRENT_LANG_OF == "rus") {
+								MessageBox(_T("Формула с такими же переменными уже существует и не может быть создана"), _T("Предупреждение"), MB_OK);
+							}
+							else {
+								MessageBox(_T("A formula with the same variables already exists and cannot be created"), _T("Warning"), MB_OK);
+
+							}
+						}
 					}
 				}
 			}
@@ -741,4 +772,15 @@ void OperationDlg::HideCandidates()
 	m_ListBoxDestination2.DCU.clear();
 	m_checkAll2.EnableWindow(false);
 	m_checkAll2.SetCheck(0);
+}
+
+void OperationDlg::OnStnClickedStatic1()
+{
+	// TODO: добавьте свой код обработчика уведомлений
+}
+
+
+void OperationDlg::OnBnClickedCheckall1()
+{
+	// TODO: добавьте свой код обработчика уведомлений
 }

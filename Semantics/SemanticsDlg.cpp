@@ -4,6 +4,9 @@
 // SemanticsDlg.cpp : файл реализации
 //
 
+//
+
+
 #include "stdafx.h"
 #include "Semantics.h"
 #include "SemanticsDlg.h"
@@ -19,6 +22,7 @@
 #include "ReplaceVariableDialog.h"
 #include "Item.h"
 #include "xmlarchive.h"
+#include <fstream>
 //#include <afxdisp.h>
 
 
@@ -276,8 +280,12 @@ void CSemanticsDlg::OnBnClickedOk()
 //	SetDialog sd;
 //	sd.DoModal();
 	if(all_entities.size() < 1)
-	{
-		MessageBox(_T("Не определено ни одной формулы. Схема не будет построена"), _T("Замечание"), MB_OK);
+	{	
+		if(CURRENT_LANG_OF=="rus")
+			MessageBox(_T("Не определено ни одной формулы. Схема не будет построена"), _T("Замечание"), MB_OK);
+		else
+			MessageBox(_T("No formula has been defined. The scheme will not be built"), _T("Remark"), MB_OK);
+
 		return;
 	}
 	int n = 1;
@@ -786,7 +794,10 @@ void CSemanticsDlg::OnBnClickedAddatomformula()
 		EntityVariable ev2(label2, cad->tbuf_index2, SET);
 		if(!formula1->setAtomFormula(&all_entities, ev1, ev2))
 		{
-			MessageBox(_T("Формула с такими же переменными уже существует и не может быть создана"), _T("Предупреждение"), MB_OK );
+			if (CURRENT_LANG_OF == "rus")
+				MessageBox(_T("Формула с такими же переменными уже существует и не может быть создана"), _T("Предупреждение"), MB_OK );
+			else
+				MessageBox(_T("A formula with the same variables already exists and cannot be created"), _T("Warning"), MB_OK );
 			delete formula1;
 		}
 //		all_formulas.push_back(formula1);
@@ -1155,8 +1166,10 @@ DWORD WINAPI AutomateWordByImport(vector <EntityBase *> * all_entities, TCHAR * 
 			wprintf(L"CreateInstance failed w/err 0x%08lx\n", hr);
 			return 1;
 		}
-
-		AfxMessageBox(_T("Приложение Word.Application запущено"));
+		if (CURRENT_LANG_OF == "rus")
+			AfxMessageBox(_T("Приложение Word.Application запущено"));
+		else
+			AfxMessageBox(_T("Application Word.Application is running"));
 
 		/////////////////////////////////////////////////////////////////////
 		// Make Word invisible. (i.e. Application.Visible = 0)
@@ -1189,23 +1202,45 @@ DWORD WINAPI AutomateWordByImport(vector <EntityBase *> * all_entities, TCHAR * 
 		}
 
 		//  определение текста заголовков и предпочтительной ширины столбцов таблицы Word
-		spTable->Cell(1, 1)->Range->InsertAfter(L"Номер формулы");
-		spTable->Cell(1, 1)->PutPreferredWidth(20);
-		spTable->Cell(1, 2)->Range->InsertAfter(L"Формула");
-		spTable->Cell(1, 2)->PutPreferredWidth(60);
-		spTable->Cell(1, 3)->Range->InsertAfter(L"Тип");
-		spTable->Cell(1, 3)->PutPreferredWidth(20);
-		spTable->Cell(1, 4)->Range->InsertAfter(L"Свободные переменные");
-		spTable->Cell(1, 4)->PutPreferredWidth(20);
-		spTable->Cell(1, 5)->Range->InsertAfter(L"Обозначение");
-		spTable->Cell(1, 5)->PutPreferredWidth(60);
-		spTable->Cell(1, 6)->Range->InsertAfter(L"Символьное обозначение");
-		spTable->Cell(1, 6)->PutPreferredWidth(60);
-		spTable->Cell(1, 7)->Range->InsertAfter(L"Начальный текст");
-		spTable->Cell(1, 7)->PutPreferredWidth(60);
-		spTable->Cell(1, 8)->Range->InsertAfter(L"Перевод на естественный язык");
-		spTable->Cell(1, 8)->PutPreferredWidth(60);
-//		spTable->Cell(1, 5)->Range->Text(WideString(L"Обозначение"));
+		if (CURRENT_LANG_OF == "rus") {
+
+			spTable->Cell(1, 1)->Range->InsertAfter(L"Номер формулы");
+			spTable->Cell(1, 1)->PutPreferredWidth(20);
+			spTable->Cell(1, 2)->Range->InsertAfter(L"Формула");
+			spTable->Cell(1, 2)->PutPreferredWidth(60);
+			spTable->Cell(1, 3)->Range->InsertAfter(L"Тип");
+			spTable->Cell(1, 3)->PutPreferredWidth(20);
+			spTable->Cell(1, 4)->Range->InsertAfter(L"Свободные переменные");
+			spTable->Cell(1, 4)->PutPreferredWidth(20);
+			spTable->Cell(1, 5)->Range->InsertAfter(L"Обозначение");
+			spTable->Cell(1, 5)->PutPreferredWidth(60);
+			spTable->Cell(1, 6)->Range->InsertAfter(L"Символьное обозначение");
+			spTable->Cell(1, 6)->PutPreferredWidth(60);
+			spTable->Cell(1, 7)->Range->InsertAfter(L"Начальный текст");
+			spTable->Cell(1, 7)->PutPreferredWidth(60);
+			spTable->Cell(1, 8)->Range->InsertAfter(L"Перевод на естественный язык");
+			spTable->Cell(1, 8)->PutPreferredWidth(60);
+			//		spTable->Cell(1, 5)->Range->Text(WideString(L"Обозначение"));
+		}
+		else {
+			spTable->Cell(1, 1)->Range->InsertAfter(L"Formula number");
+			spTable->Cell(1, 1)->PutPreferredWidth(20);
+			spTable->Cell(1, 2)->Range->InsertAfter(L"Formula");
+			spTable->Cell(1, 2)->PutPreferredWidth(60);
+			spTable->Cell(1, 3)->Range->InsertAfter(L"Type");
+			spTable->Cell(1, 3)->PutPreferredWidth(20);
+			spTable->Cell(1, 4)->Range->InsertAfter(L"Free variables");
+			spTable->Cell(1, 4)->PutPreferredWidth(20);
+			spTable->Cell(1, 5)->Range->InsertAfter(L"Designation");
+			spTable->Cell(1, 5)->PutPreferredWidth(60);
+			spTable->Cell(1, 6)->Range->InsertAfter(L"Symbolic designation");
+			spTable->Cell(1, 6)->PutPreferredWidth(60);
+			spTable->Cell(1, 7)->Range->InsertAfter(L"The initial text");
+			spTable->Cell(1, 7)->PutPreferredWidth(60);
+			spTable->Cell(1, 8)->Range->InsertAfter(L"Natural language translation");
+			spTable->Cell(1, 8)->PutPreferredWidth(60);
+			//		spTable->Cell(1, 5)->Range->Text(WideString(L"Обозначение"));
+		}
 
 
 		for ( size_t i = 0; i < all_entities->size(); i++)  // перебор по всем созданным в текущей схеме сущностям
@@ -1223,13 +1258,26 @@ DWORD WINAPI AutomateWordByImport(vector <EntityBase *> * all_entities, TCHAR * 
 			{
 				Formula * icurr = (Formula *)peb;
 				if (icurr->getFeature() == PERFORMED_FEATURE) 
-					tstr = _T("выполнимая");
+					if (CURRENT_LANG_OF == "rus")
+						tstr = _T("выполнимая");
+					else
+						tstr = _T("workable");
+
 				else if (icurr->getFeature() == TRUTH_FEATURE) 
-					tstr = _T("истинная");
+					if (CURRENT_LANG_OF == "rus")
+						tstr = _T("истинная");
+					else
+						tstr = _T("true");
 				else if (icurr->getFeature() == FALSE_FEATURE) 
-					tstr = _T("ложная"); 
+					if (CURRENT_LANG_OF == "rus")
+						tstr = _T("ложная"); 
+					else
+						tstr = _T("false");
 				else if (icurr->getFeature() == ATOMARN_FEATURE)
-					tstr = _T("атомарная");
+					if (CURRENT_LANG_OF == "rus")
+						tstr = _T("атомарная");
+					else
+						tstr = _T("atomic");
 				if(tstr.size() > 0)
 				{
 					Word::_FontPtr spFont1 = spTable->Cell(i + 2, 3)->Range->Font;
@@ -1253,7 +1301,10 @@ DWORD WINAPI AutomateWordByImport(vector <EntityBase *> * all_entities, TCHAR * 
 		TCHAR tszFileName[MAX_PATH];
 		if (!GetModuleDirectory(tszFileName, ARRAYSIZE(tszFileName)))
 		{
-			AfxMessageBox(_T("GetModuleDirectory ошибка"));
+			if (CURRENT_LANG_OF == "rus")
+				AfxMessageBox(_T("GetModuleDirectory ошибка"));
+			else
+				AfxMessageBox(_T("GetModuleDirectory Error"));
 			return 1;
 		}
 
@@ -1266,7 +1317,11 @@ DWORD WINAPI AutomateWordByImport(vector <EntityBase *> * all_entities, TCHAR * 
 
 		spDoc->SaveAs(&vtFileName);
 		spDoc->Close();
-		AfxMessageBox(_T("Экспорт осуществлён"));
+		if (CURRENT_LANG_OF == "rus")
+			AfxMessageBox(_T("Экспорт осуществлён"));
+		else
+			AfxMessageBox(_T("The export has been carried out"));
+
 		spWordApp->Quit();
 
 
@@ -1316,7 +1371,12 @@ void CSemanticsDlg::OnBnClickedExport()
 void CSemanticsDlg::OnBnClickedSavescheme()
 {
 	CString strExt((LPCSTR)"*.fms");
-	CString strTitle((LPCSTR)"Выберите файл для записи схемы");
+	CString strTitle;
+	if (CURRENT_LANG_OF == "rus")
+		strTitle = CString((LPCSTR)"Выберите файл для записи схемы");
+	else
+		strTitle = CString((LPCSTR)"Выберите файл для записи схемы");
+
 	CString strFilter((LPCSTR)"Semantics Files (*.fms)|*.fms||");
 	CString strPathName;
 
@@ -1561,7 +1621,10 @@ void CSemanticsDlg::OnBnClickedSavescheme()
 	{
 //		wprintf(L"Word throws the error: %s\n", err.ErrorMessage());
 //		wprintf(L"Description: %s\n", (LPCWSTR) err.Description());
-		AfxMessageBox(_T("Ошибка сохранения схемы"));
+		if (CURRENT_LANG_OF == "rus")
+			AfxMessageBox(_T("Ошибка сохранения схемы"));
+		else 
+			AfxMessageBox(_T("Error saving the schema"));
 	}
 	CoUninitialize();
 	for (int i = 0; i < Formulas.GetSize(); i++)
@@ -1587,7 +1650,12 @@ void CSemanticsDlg::OnBnClickedSavescheme()
 void CSemanticsDlg::OnBnClickedLoadscheme()
 {
 	CString strExt((LPCSTR)"*.fms");
-	CString strTitle((LPCSTR)"Выберите файл для загрузки схемы");
+	CString strTitle;
+	if (CURRENT_LANG_OF == "rus")
+		strTitle = CString((LPCSTR)"Выберите файл для загрузки схемы");
+	else 
+		strTitle = CString((LPCSTR)"Select the file to download the schema");
+
 	CString strFilter((LPCSTR)"Semantics Files (*.fms)|*.fms||");
 	CString strPathName;
 
@@ -1638,7 +1706,10 @@ void CSemanticsDlg::OnBnClickedLoadscheme()
 //		delete e;
 //		wprintf(L"Word throws the error: %s\n", err.ErrorMessage());
 //		wprintf(L"Description: %s\n", (LPCWSTR) err.Description());
-		AfxMessageBox(_T("Ошибка загрузки схемы"));
+		if (CURRENT_LANG_OF == "rus")
+			AfxMessageBox(_T("Ошибка загрузки схемы"));
+		else
+			AfxMessageBox(_T("Schema loading error"));
 	}
 	CoUninitialize();
 	// очищаю уже созданную схему
@@ -1812,27 +1883,125 @@ void CSemanticsDlg::OnBnClickedChangevariable()
 void CSemanticsDlg::OnBnClickedRus()
 {
 	// TODO: Add your control notification handler code here
+	
+	CURRENT_LANG_OF = "rus";
 	GetDlgItem(RB_RUS)->SetWindowTextW(L"Русский");
 	GetDlgItem(RB_ENG)->SetWindowTextW(L"Английский");
 	m_rbLang = 0;
+
+	GetDlgItem(IDC_ADDAKSIOMA)->SetWindowTextW(L"Добавить атомарную формулу");
+	
+	GetDlgItem(IDC_SHOWALLFORMULAS)->SetWindowTextW(L"Посмотреть все формулы");
+
+	GetDlgItem(IDC_BUILDFORMULA1)->SetWindowTextW(L"Построение новой формулы Pk:= Pi && Pj");
+
+	GetDlgItem(IDC_BUILDFORMULA2)->SetWindowTextW(L"Построение новой формулы Pk:= Pi V Pj");
+
+	GetDlgItem(IDC_BUILDFORMULA3)->SetWindowTextW(L"Построение новой формулы Pk:=not (Pi)");
+
+	GetDlgItem(IDC_BUILDFORMULA4)->SetWindowTextW(L"Построение новой формулы Pk:= ( K a ) Pi, где a - свободная переменная");
+												  //    Building new formula
+	GetDlgItem(IDC_BUILDFORMULA5)->SetWindowTextW(L"Построение новой формулы Pk:= ( K a ) Pj, где a - свободная переменная");
+
+	GetDlgItem(IDC_BUILDFORMULA6)->SetWindowTextW(L"Построение множества на основе формулы");
+
+	GetDlgItem(IDC_CHANGEVARIABLE)->SetWindowTextW(L"Замена переменных");
+
+
+
+	GetDlgItem(IDEXPORT)->SetWindowTextW(L"Экспорт в WORD");
+
+	GetDlgItem(IDOK)->SetWindowTextW(L"Схема");
+
+
+
+	GetDlgItem(IDCANCEL)->SetWindowTextW(L"Отмена");
+
+	GetDlgItem(IDSAVESCHEME)->SetWindowTextW(L"Сохранить");
+
+	GetDlgItem(IDLOADSCHEME)->SetWindowTextW(L"Загрузить");
+
+	GetDlgItem(ID_HELP)->SetWindowTextW(L"&Справка");
+
+	//DDX_Control(pDX, IDC_BUILDFORMULA5, m_button5);
+	//DDX_Control(pDX, IDC_BUILDFORMULA4, m_button4);
+	//DDX_Control(pDX, IDC_BUILDFORMULA3, m_button3);
+	//DDX_Control(pDX, IDC_BUILDFORMULA2, m_button2);
+	//DDX_Control(pDX, IDC_BUILDFORMULA1, m_button1);
+	//DDX_Control(pDX, IDC_ADDAKSIOMA, m_button);
+	//DDX_Control(pDX, IDC_SHOWALLFORMULAS, m_button6);
+	//DDX_Control(pDX, IDC_MFCEDITBROWSE1, m_fileFinder);
+	//DDX_Control(pDX, IDC_BUILDFORMULA6, m_buttonSet);
+	//DDX_Control(pDX, IDC_MFCEDITBROWSE2, m_fileWordExport);
+	//DDX_Control(pDX, IDC_BUILDFORMULA7, m_button7);
+	//DDX_Control(pDX, IDC_BUILDTUPLE, m_KortegeButton);
+	//DDX_Control(pDX, IDC_CHANGEVARIABLE, m_ChangeVariable);
+
+
+	//Построение новой формулы Pk:=not (Pi)
+
+	//IDR_MENU_SYMBOLS -- выподающие окно
+	//IDD_SEMANTICS_DIALOG -- Главное меню
+	//IDD_REPLACEVARIABLE -- заменить свободную переменную
+	//IDD_CHOOSEDIALOG -- Создание новых формул
+
 	UpdateData(TRUE);
 }
 
+std::map<std::string, std::string> dictanary;
 
 void CSemanticsDlg::OnBnClickedEng()
 {
+
+	CURRENT_LANG_OF = "eng";
+
 	// TODO: Add your control notification handler code here
 	GetDlgItem(RB_RUS)->SetWindowTextW(L"Russian");
 	GetDlgItem(RB_ENG)->SetWindowTextW(L"English");
 	//m_rbLang = 1;
 	//CString langStr;
 	//langStr.Format(_T("%d"), m_rbLang);
-	if (m_rbLang == 1) {
-		//MessageBox(NULL, langStr, MB_OK);
-		GetDlgItem(IDC_ADDAKSIOMA)->SetWindowTextW(L"Add an atomatic formula");
-	}
-	else {
-		GetDlgItem(IDC_ADDAKSIOMA)->SetWindowTextW(L"Добавить атомарную формулу");
-	}
+
+	//MessageBox(NULL, langStr, MB_OK);
+	GetDlgItem(IDC_ADDAKSIOMA)->SetWindowTextW(L"Add an atomatic formula");
+
+	GetDlgItem(IDC_SHOWALLFORMULAS)->SetWindowTextW(L"View all formulas");
+
+	GetDlgItem(IDC_BUILDFORMULA1)->SetWindowTextW(L"  Building a new formula Pk:= Pi && Pj");
+
+	GetDlgItem(IDC_BUILDFORMULA2)->SetWindowTextW(L"  Building a new formula Pk:= Pi V Pj");
+
+	GetDlgItem(IDC_BUILDFORMULA3)->SetWindowTextW(L"  Building a new formula Pk:=not (Pi)");
+
+	GetDlgItem(IDC_BUILDFORMULA4)->SetWindowTextW(L"  Building a new formula Pk:= ( K a ) Pi, где a - free variable");
+
+	GetDlgItem(IDC_BUILDFORMULA5)->SetWindowTextW(L"  Building a new formula Pk:= ( K a ) Pj, где a - free variable");
+
+	GetDlgItem(IDC_BUILDFORMULA6)->SetWindowTextW(L"    Building set based on a formula");
+
+	GetDlgItem(IDC_CHANGEVARIABLE)->SetWindowTextW(L"Replacing variables");
+
+	
+
+
+	GetDlgItem(IDEXPORT)->SetWindowTextW(L"Exporting to WORD");
+
+	GetDlgItem(IDOK)->SetWindowTextW(L"Sceme");
+
+
+
+	GetDlgItem(IDCANCEL)->SetWindowTextW(L"Cancel");
+
+	GetDlgItem(IDSAVESCHEME)->SetWindowTextW(L"Save");
+
+	GetDlgItem(IDLOADSCHEME)->SetWindowTextW(L"Load");
+
+	GetDlgItem(ID_HELP)->SetWindowTextW(L"&help");
+	
+	
+	
+	
+	GetDlgItem(IDD_BELONGING_DIALOG)->SetWindowText(L"Getting the inclusion predicate");
+
 	UpdateData(TRUE);
 }

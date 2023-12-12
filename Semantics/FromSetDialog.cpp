@@ -7,6 +7,10 @@
 #include "afxdialogex.h"
 
 
+//TRANSLATED
+
+
+
 // диалоговое окно FromSetDialog
 
 IMPLEMENT_DYNAMIC(FromSetDialog, CDialogEx)

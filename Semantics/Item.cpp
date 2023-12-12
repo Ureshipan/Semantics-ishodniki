@@ -3,6 +3,10 @@
 // Item.cpp : implementation file
 //
 
+
+//TRANSLATED
+
+
 #include "stdafx.h"
 #include "xmlarchive.h"
 //#include "XMLSerialization.h"

@@ -9,6 +9,8 @@
 #define new DEBUG_NEW
 #endif
 
+//TRANSLATED
+
 
 // CSemanticsApp
 
@@ -64,8 +66,14 @@ BOOL CSemanticsApp::InitInstance()
 	// »змените раздел реестра, в котором хран€тс€ параметры
 	// TODO: следует изменить эту строку на что-нибудь подход€щее,
 	// например на название организации
-	SetRegistryKey(_T("Ћокальные приложени€, созданные с помощью мастера приложений"));
+	if (CURRENT_LANG_OF=="rus")
+	{
+		SetRegistryKey(_T("Ћокальные приложени€, созданные с помощью мастера приложений"));
+	}
+	else {
+		SetRegistryKey(_T("Local applications created using the Application Wizard"));
 
+	}
 	CSemanticsDlg dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();

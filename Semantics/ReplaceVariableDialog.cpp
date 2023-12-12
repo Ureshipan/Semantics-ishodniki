@@ -8,6 +8,12 @@
 #include "afxdialogex.h"
 
 
+
+
+//
+
+
+
 // диалоговое окно ReplaceVariableDialog
 
 IMPLEMENT_DYNAMIC(ReplaceVariableDialog, CDialogEx)
@@ -279,25 +285,37 @@ void ReplaceVariableDialog::OnBnClickedOk()
 								}
 								else
 								{
-									AfxMessageBox(_T("»ндекс дл€ замены переменной не целое положительное число"));
+									if(CURRENT_LANG_OF=="rus")
+										AfxMessageBox(_T("»ндекс дл€ замены переменной не целое положительное число"));
+									else
+										AfxMessageBox(_T("The index to replace the variable is not a positive integer"));
 									m_editIndex.SetFocus();
 								}
 							}
 							else
 							{
-								AfxMessageBox(_T("Ќе указан индекс дл€ замены переменной"));
+								if (CURRENT_LANG_OF == "rus")
+									AfxMessageBox(_T("Ќе указан индекс дл€ замены переменной"));
+								else 
+									AfxMessageBox(_T("The index for replacing the variable is not specified"));
 								m_editIndex.SetFocus();
 							}
 						}
 						else
 						{
-							AfxMessageBox(_T("Ќе указан индекс дл€ замены переменной"));
+							if (CURRENT_LANG_OF == "rus")
+								AfxMessageBox(_T("Ќе указан индекс дл€ замены переменной"));
+							else
+								AfxMessageBox(_T("The index for replacing the variable is not specified"));
 							m_editIndex.SetFocus();
 						}
 					}
 					else
 					{
-						AfxMessageBox(_T("Ќе выбрано обозначение дл€ замены переменной"));
+						if (CURRENT_LANG_OF == "rus")
+							AfxMessageBox(_T("Ќе выбрано обозначение дл€ замены переменной"));
+						else 
+							AfxMessageBox(_T("The designation for replacing the variable is not selected"));
 						m_comboName.SetFocus();
 					}
 				}
@@ -312,7 +330,10 @@ void ReplaceVariableDialog::OnBnClickedOk()
 					}
 					else
 					{
-						AfxMessageBox(_T("Ќе выбрана переменна€ дл€ замены"));
+						if (CURRENT_LANG_OF == "rus")
+							AfxMessageBox(_T("Ќе выбрана переменна€ дл€ замены"));
+						else
+							AfxMessageBox(_T("A replacement variable has not been selected"));
 						m_listVariables.SetFocus();
 					}
 				}
@@ -409,27 +430,39 @@ void ReplaceVariableDialog::OnBnClickedOk()
 					else
 					{
 						result = false;
-						AfxMessageBox(_T("ќбозначени€ замен€емой и переменной дл€ замены совпадают"));
+						if (CURRENT_LANG_OF == "rus")
+							AfxMessageBox(_T("ќбозначени€ замен€емой и переменной дл€ замены совпадают"));
+						else
+							AfxMessageBox(_T("The designations of the replaced and the variable to replace are the same"));
 						m_listFreeVariables.SetFocus();						
 					}
 				}
 				else
 				{
 					result = false;
-					AfxMessageBox(_T("“акое переобозначение переменной уже существует"));
+					if (CURRENT_LANG_OF == "rus")
+						AfxMessageBox(_T("“акое переобозначение переменной уже существует"));
+					else
+						AfxMessageBox(_T("Such a reinvention of the variable already exists"));
 					m_listFreeVariables.SetFocus();
 				}
 			}
 		}
 		else
 		{
-			AfxMessageBox(_T("Ќе выбрана свободна€ переменна€"));
+			if (CURRENT_LANG_OF == "rus")
+				AfxMessageBox(_T("Ќе выбрана свободна€ переменна€"));
+			else
+				AfxMessageBox(_T("A free variable is not selected"));
 			m_listFreeVariables.SetFocus();
 		}			
 	}
 	else
 	{
-		AfxMessageBox(_T("Ќе выбрана формула"));
+		if (CURRENT_LANG_OF == "rus")
+			AfxMessageBox(_T("Ќе выбрана формула"));
+		else
+			AfxMessageBox(_T("The formula is not selected"));
 		m_list.SetFocus();
 	}
 	if(tbuf != nullptr)
