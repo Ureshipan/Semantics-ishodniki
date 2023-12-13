@@ -1973,9 +1973,9 @@ void CSemanticsDlg::OnBnClickedEng()
 
 	GetDlgItem(IDC_BUILDFORMULA3)->SetWindowTextW(L"  Building a new formula Pk:=not (Pi)");
 
-	GetDlgItem(IDC_BUILDFORMULA4)->SetWindowTextW(L"  Building a new formula Pk:= ( K a ) Pi, где a - free variable");
+	GetDlgItem(IDC_BUILDFORMULA4)->SetWindowTextW(L"  Building a new formula Pk:= ( K a ) Pi, where a - free variable");
 
-	GetDlgItem(IDC_BUILDFORMULA5)->SetWindowTextW(L"  Building a new formula Pk:= ( K a ) Pj, где a - free variable");
+	GetDlgItem(IDC_BUILDFORMULA5)->SetWindowTextW(L"  Building a new formula Pk:= ( K a ) Pj, where a - free variable");
 
 	GetDlgItem(IDC_BUILDFORMULA6)->SetWindowTextW(L"    Building set based on a formula");
 
