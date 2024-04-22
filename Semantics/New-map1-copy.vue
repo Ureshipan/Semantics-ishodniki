@@ -10,10 +10,10 @@
     created="1378800153093" x="0.0" y="0.0" width="1.4E-45"
     height="1.4E-45" strokeWidth="0.0" autoSized="false">
     <resource referenceCreated="1378800928968"
-        spec="C:\Users\Test\source\repos\Ureshipan\Semantics-ishodniki\SemanticsNew-map1-copy.vue"
+        spec="C:\Users\maerd\Документы\Polytech\Проектная деятельность\GitClone\Semantics-ishodniki\SemanticsNew-map1-copy.vue"
         type="1" xsi:type="URLResource">
         <title>New-map1-copy.vue</title>
-        <property key="File" value="C:\Users\Test\source\repos\Ureshipan\Semantics-ishodniki\SemanticsNew-map1-copy.vue"/>
+        <property key="File" value="C:\Users\maerd\Документы\Polytech\Проектная деятельность\GitClone\Semantics-ishodniki\SemanticsNew-map1-copy.vue"/>
     </resource>
     <fillColor>#FFFFFF</fillColor>
     <strokeColor>#404040</strokeColor>
@@ -105,7 +105,7 @@
         <point2 x="-613.3333" y="70.58335"/>
     </child>
     <child ID="13"
-        label="[  ( x0(-A0 )  ]&#xa;&#x41e;&#x431;&#x43e;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x438;&#x435;&#xa;P0 ( x0 , A0 ) "
+        label=" [  ( x0(-A0 )  ]&#xa;&#x41e;&#x431;&#x43e;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x438;&#x435;&#xa; P0 ( x0 , A0 ) "
         layerID="1" created="1378800156937" x="-354,000000" y="-199,000000"
         width="240,000000" height="160,000000" strokeWidth="2.0"
         autoSized="false" xsi:type="node">
@@ -117,7 +117,7 @@
         <shape xsi:type="roundRect"/>
     </child>
     <child ID="14"
-        label="[  ( x1(-A0 )  ]&#xa;&#x41e;&#x431;&#x43e;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x438;&#x435;&#xa;P0 ( x1 , A0 ) "
+        label=" [  ( d0(-A0 )  ]&#xa;&#x41e;&#x431;&#x43e;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x438;&#x435;&#xa; P0 ( d0 , A0 ) "
         layerID="1" created="1378800156937" x="-84,000000" y="-199,000000"
         width="240,000000" height="160,000000" strokeWidth="2.0"
         autoSized="false" xsi:type="node">
@@ -129,17 +129,77 @@
         <shape xsi:type="roundRect"/>
     </child>
     <child ID="15"
-        label="[  ( x0(-B0 )  ]&#xa;&#x41e;&#x431;&#x43e;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x438;&#x435;&#xa;P0 ( x0 , B0 ) "
-        layerID="1" created="1378800156937" x="186,000000" y="-199,000000"
-        width="240,000000" height="160,000000" strokeWidth="2.0"
+        label=" [  (  ( x0(-A0 ) AND ( d0(-A0 )  )  ]&#xa;&#x41e;&#x431;&#x43e;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x438;&#x435;&#xa; P1 ( x0 , A0 , d0 ) "
+        layerID="1" created="1378800156937" x="-354,000000" y="191,000000"
+        width="240,000000" height="160,000000" strokeWidth="2.0" strokeStyle="2"
         autoSized="false" xsi:type="node">
-        <fillColor>#F1A83E</fillColor>
+        <fillColor>#0AAD1D</fillColor>
         <strokeColor>#000000</strokeColor>
         <textColor>#000000</textColor>
         <font>Arial-bold-12</font>
         <URIString>http://vue.tufts.edu/rdf/resource/06e8c0d7c0a8000b00f95b1eac61c244</URIString>
-        <shape xsi:type="roundRect"/>
+        <shape xsi:type="rectangle"/>
     </child>
+    <child ID="16"
+        label=" [  (  (  ( x0(-A0 ) AND ( d0(-A0 )  ) O&#xa;R ( d0(-A0 )  )  ]&#xa;&#x41e;&#x431;&#x43e;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x438;&#x435;&#xa; P2 ( x0 , A0 , d0 ) "
+        layerID="1" created="1378800156937" x="-84,000000" y="191,000000"
+        width="240,000000" height="160,000000" strokeWidth="2.0" strokeStyle="2"
+        autoSized="false" xsi:type="node">
+        <fillColor>#0AAD1D</fillColor>
+        <strokeColor>#000000</strokeColor>
+        <textColor>#000000</textColor>
+        <font>Arial-bold-12</font>
+        <URIString>http://vue.tufts.edu/rdf/resource/06e8c0d7c0a8000b00f95b1eac61c244</URIString>
+        <shape xsi:type="rectangle"/>
+    </child>
+    <child ID="17" layerID="1" created="1378800168781" x="-234,000000"
+		y="-199,000000" width="0,000000" height="550,000000" strokeWidth="1.0"
+        strokeStyle="0"  autoSized="false" controlCount="0"
+        arrowState="2" xsi:type="link">
+        <strokeColor>#000000</strokeColor>
+        <textColor>#404040</textColor>
+        <font>Arial-plain-11</font>
+        <URIString>http://vue.tufts.edu/rdf/resource/06e8c0f6c0a8000b00f95b1e49d4efa6</URIString>
+        <point1 x="-6.27744e+66" y="-6.27744e+66"/>
+        <point2 x="-6.27744e+66" y="-6.27744e+66"/>
+        <ID1 xsi:type="node">13</ID1>
+        <ID2 xsi:type="node">15</ID2>    </child>
+    <child ID="18" layerID="1" created="1378800168781" x="36,000000"
+		y="-199,000000" width="-270,000000" height="550,000000" strokeWidth="1.0"
+        strokeStyle="0"  autoSized="false" controlCount="0"
+        arrowState="2" xsi:type="link">
+        <strokeColor>#000000</strokeColor>
+        <textColor>#404040</textColor>
+        <font>Arial-plain-11</font>
+        <URIString>http://vue.tufts.edu/rdf/resource/06e8c0f6c0a8000b00f95b1e49d4efa6</URIString>
+        <point1 x="-6.27744e+66" y="-6.27744e+66"/>
+        <point2 x="-6.27744e+66" y="-6.27744e+66"/>
+        <ID1 xsi:type="node">14</ID1>
+        <ID2 xsi:type="node">15</ID2>    </child>
+    <child ID="19" layerID="1" created="1378800168781" x="-234,000000"
+		y="191,000000" width="270,000000" height="160,000000" strokeWidth="1.0"
+        strokeStyle="0"  autoSized="false" controlCount="0"
+        arrowState="2" xsi:type="link">
+        <strokeColor>#000000</strokeColor>
+        <textColor>#404040</textColor>
+        <font>Arial-plain-11</font>
+        <URIString>http://vue.tufts.edu/rdf/resource/06e8c0f6c0a8000b00f95b1e49d4efa6</URIString>
+        <point1 x="-6.27744e+66" y="-6.27744e+66"/>
+        <point2 x="-6.27744e+66" y="-6.27744e+66"/>
+        <ID1 xsi:type="node">15</ID1>
+        <ID2 xsi:type="node">16</ID2>    </child>
+    <child ID="20" layerID="1" created="1378800168781" x="36,000000"
+		y="-199,000000" width="0,000000" height="550,000000" strokeWidth="1.0"
+        strokeStyle="0"  autoSized="false" controlCount="0"
+        arrowState="2" xsi:type="link">
+        <strokeColor>#000000</strokeColor>
+        <textColor>#404040</textColor>
+        <font>Arial-plain-11</font>
+        <URIString>http://vue.tufts.edu/rdf/resource/06e8c0f6c0a8000b00f95b1e49d4efa6</URIString>
+        <point1 x="-6.27744e+66" y="-6.27744e+66"/>
+        <point2 x="-6.27744e+66" y="-6.27744e+66"/>
+        <ID1 xsi:type="node">14</ID1>
+        <ID2 xsi:type="node">16</ID2>    </child>
     <layer ID="1" label="Layer 1" created="1378800153093" x="0.0"
         y="0.0" width="1.4E-45" height="1.4E-45" strokeWidth="0.0" autoSized="false">
         <URIString>http://vue.tufts.edu/rdf/resource/06e8c0f6c0a8000b00f95b1e0b908b0f</URIString>
@@ -198,6 +258,6 @@
     </PathwayList>
     <date>2013-09-10</date>
     <modelVersion>6</modelVersion>
-    <saveLocation>C:\Users\Test\source\repos\Ureshipan\Semantics-ishodniki\Semantics</saveLocation>
-    <saveFile>C:\Users\Test\source\repos\Ureshipan\Semantics-ishodniki\SemanticsNew-map1-copy.vue</saveFile>
+    <saveLocation>C:\Users\maerd\Документы\Polytech\Проектная деятельность\GitClone\Semantics-ishodniki\Semantics</saveLocation>
+    <saveFile>C:\Users\maerd\Документы\Polytech\Проектная деятельность\GitClone\Semantics-ishodniki\SemanticsNew-map1-copy.vue</saveFile>
 </LW-MAP>

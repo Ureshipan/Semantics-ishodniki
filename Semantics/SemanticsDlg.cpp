@@ -216,7 +216,7 @@ BOOL CSemanticsDlg::OnInitDialog()
 	TCHAR currentDir[MAX_PATH];
 	GetCurrentDirectory( MAX_PATH, currentDir );
 	_tcsncat_s(currentDir, ARRAYSIZE(currentDir), _T("\\Sample1.docx"), 13 );
-	m_fileFinder.SetWindowTextT(_T("D:\\VUE\\VUE-launcher.exe"));
+	m_fileFinder.SetWindowTextT(_T("C:\\Program Files (x86)\\VUE\\VUE-launcher.exe"));
 	m_fileWordExport.SetWindowTextT(currentDir);
 
 	return TRUE;  // возврат значения TRUE, если фокус не передан элементу управления
@@ -1377,7 +1377,7 @@ void CSemanticsDlg::OnBnClickedSavescheme()
 	else
 		strTitle = CString((LPCSTR)"Выберите файл для записи схемы");
 
-	CString strFilter((LPCSTR)"Semantics Files (*.fms)|*.fms||");
+	CString strFilter((LPCSTR)"MathSem Files (*.fms)|*.fms||");
 	CString strPathName;
 
 	CFileDialog fileDialog(FALSE, strExt, NULL, OFN_ENABLESIZING | OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY,
@@ -1607,7 +1607,7 @@ void CSemanticsDlg::OnBnClickedSavescheme()
 		CWaitCursor wait;
 		CXMLArchive ar(strPathName, CArchive::store, NULL, NULL);
 		CXMLArchive& xmlArchive = static_cast<CXMLArchive&>(ar);
-		xmlArchive.GetNode(_T("Semantics")); 
+		xmlArchive.GetNode(_T("MathSem")); 
 //		XMLCLASSNODE;
 		XMLDATA(Header);
 		XMLDATA(Formulas);
@@ -1656,7 +1656,7 @@ void CSemanticsDlg::OnBnClickedLoadscheme()
 	else 
 		strTitle = CString((LPCSTR)"Select the file to download the schema");
 
-	CString strFilter((LPCSTR)"Semantics Files (*.fms)|*.fms||");
+	CString strFilter((LPCSTR)"MathSem Files (*.fms)|*.fms||");
 	CString strPathName;
 
 	CFileDialog fileDialog(TRUE, strExt, NULL, OFN_ENABLESIZING | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST,
@@ -1686,7 +1686,7 @@ void CSemanticsDlg::OnBnClickedLoadscheme()
 		CWaitCursor wait;
 		CXMLArchive ar(strPathName, CArchive::load, NULL, NULL);
 		CXMLArchive& xmlArchive = static_cast<CXMLArchive&>(ar);
-		xmlArchive.GetNode(_T("Semantics")); //		XMLCLASSNODE;
+		xmlArchive.GetNode(_T("MathSem")); //		XMLCLASSNODE;
 		XMLDATA(Header);
 		XMLDATA(Formulas);
 		XMLDATA(Sets);

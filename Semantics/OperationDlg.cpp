@@ -280,7 +280,7 @@ void OperationDlg::SetOperationState()
 		m_ButtonRemoveAll1.EnableWindow(false);
 		if (CURRENT_LANG_OF == "rus") {
 			if (operation == AND_OPERATION)
-				tstr = _T("Операция объединения <Symbol=/and>");
+				tstr = _T("Операция пересечения <Symbol=/and>");
 			else
 				tstr = _T("Операция объединения <Symbol=/or>");
 		}

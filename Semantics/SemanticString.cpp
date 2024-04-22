@@ -59,7 +59,8 @@ bool SemanticString::PrepareSubItemData(tstring & tstr, bool forWordExport)
 		count = 0;    // переменная для количества символов
 		size.cx = 0;
 		size.cy = 0;
-		// начали разбор на математические симовлы в виде <symbol=..>
+		// начали разбор на математические симовлы в виде 
+		// =..>
 		bool isFound = false;
 		int worked = 0;   // сётчик обработанных символов
 		int pos = 0;    // положение в строке, с которого начинаем поиск левого тэга '<'
